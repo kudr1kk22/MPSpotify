@@ -48,9 +48,10 @@ final class HomeViewController: UIViewController {
 
   func playTracks(_ position: Int) {
     guard let tracks = homeVCViewModel.recommendationsModel?.tracks else { return }
-    let viewModel = PlayerViewModel(track: tracks)
+    let filter = tracks.filter { $0.previewURL != nil }
+    let viewModel = PlayerViewModel(track: filter)
     let playerVC = PlayerViewController(viewModel: viewModel)
-    viewModel.startPlaybacks(from: playerVC, track: tracks, position: position)
+    viewModel.startPlaybacks(from: playerVC, track: filter, position: position)
     present(playerVC, animated: true)
     viewModel.playerQueue?.play()
   }
