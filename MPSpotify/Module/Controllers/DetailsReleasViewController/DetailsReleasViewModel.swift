@@ -41,8 +41,9 @@ extension DetailsReleasViewModel: DetailsReleasVMProtocol {
           DispatchQueue.main.async {
               switch result {
               case .success(let model):
-                  self?.tracks = model.tracks.items
-                self?.viewModels = model.tracks.items.compactMap({
+                let filter = model.tracks.items.filter { $0.previewURL != nil }
+                  self?.tracks = filter
+                self?.viewModels = filter.compactMap({
                       DetailsReleasTVCViewModel(
                         artistName: $0.artists.first?.name ?? "-",
                         songName: $0.name

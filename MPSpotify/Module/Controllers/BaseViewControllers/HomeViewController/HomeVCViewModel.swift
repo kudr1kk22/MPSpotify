@@ -60,24 +60,25 @@ extension HomeVCViewModel: HomeVCViewModelProtocol {
   //MARK: - Configure models
   
   func configureModels(newAlbums: [AlbumModel], tracks: [AudioTrack]) {
-      self.newAlbums = newAlbums
-      self.tracks = tracks
+    self.newAlbums = newAlbums
+    self.tracks = tracks
 
-      sections.append(.newReleases(viewModels: newAlbums.compactMap({
-        return NewReleasesCellViewModel(
-          trackName: $0.name,
-          artistURL: URL(string: $0.images.first?.url ?? ""),
-          artistName: $0.artists.first?.name ?? "-"
-        )
-      })))
-      sections.append(.recommendedTracks(viewModels: tracks.compactMap({
-        return RecommendedCollectionViewCellViewModel(
-          name: $0.name,
-          artistName: $0.artists.first?.name ?? "-",
-          imageURL: URL(string: $0.album?.images.first?.url ?? "")
-        )
-      })))
-    }
+    sections.append(.newReleases(viewModels: newAlbums.compactMap({
+      return NewReleasesCellViewModel(
+        trackName: $0.name,
+        artistURL: URL(string: $0.images.first?.url ?? ""),
+        artistName: $0.artists.first?.name ?? "-"
+      )
+    })))
+    let filterRecommendedTracks = tracks.filter { $0.previewURL != nil }
+    sections.append(.recommendedTracks(viewModels: filterRecommendedTracks.compactMap({
+      return RecommendedCollectionViewCellViewModel(
+        name: $0.name,
+        artistName: $0.artists.first?.name ?? "-",
+        imageURL: URL(string: $0.album?.images.first?.url ?? "")
+      )
+    })))
+  }
 
 
 

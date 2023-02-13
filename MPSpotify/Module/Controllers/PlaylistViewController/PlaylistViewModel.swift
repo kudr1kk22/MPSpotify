@@ -41,8 +41,9 @@ final class PlaylistViewModel: PlaylistViewModelProtocol {
     apiCaller.getPlaylistDetails(for: playlist) { result in
       switch result {
       case .success(let model):
-        self.tracks = model.tracks.items.compactMap({ $0.track })
-        self.viewModels = model.tracks.items.compactMap({ PlaylistTableViewCellVM(
+        let filter = model.tracks.items.filter { $0.track.previewURL != nil }
+        self.tracks = filter.compactMap({ $0.track })
+        self.viewModels = filter.compactMap({ PlaylistTableViewCellVM(
             name: $0.track.name,
             artistName: $0.track.artists.first?.name ?? "-",
             imageURL: URL(string: $0.track.album?.images.first?.url ?? ""))
