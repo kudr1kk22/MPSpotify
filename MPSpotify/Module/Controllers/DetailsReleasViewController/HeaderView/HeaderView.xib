@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Bold.ttf">
+            <string>Poppins-Bold</string>
+        </array>
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="eo1-Gr-M4S" customClass="HeaderView" customModule="MPSpotify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="341" height="309"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LUd-Jp-bAh">
+                    <rect key="frame" x="0.0" y="0.0" width="341" height="309"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dgG-cN-txu">
+                            <rect key="frame" x="80" y="0.0" width="181" height="181"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="dgG-cN-txu" secondAttribute="height" multiplier="1:1" id="EZm-u0-XfQ"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="songName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMg-ZO-aZh">
+                            <rect key="frame" x="10" y="218" width="321" height="35"/>
+                            <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="25"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="release date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jX5-Hr-x3x">
+                            <rect key="frame" x="10" y="189" width="321" height="24"/>
+                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                            <color key="textColor" systemColor="systemGreenColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="artistName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0SU-om-hoG">
+                            <rect key="frame" x="10" y="257" width="321" height="24"/>
+                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                            <color key="textColor" systemColor="systemGray2Color"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qaT-55-afT">
+                            <rect key="frame" x="211" y="258" width="110" height="51"/>
+                            <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="40"/>
+                            <color key="tintColor" red="0.1176470588" green="0.84313725490000002" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Play" image="play.circle.fill" catalog="system"/>
+                            <connections>
+                                <action selector="playButtonDidTap" destination="eo1-Gr-M4S" eventType="touchUpInside" id="mvn-V3-l3c"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="qaT-55-afT" secondAttribute="trailing" constant="20" id="5wJ-dv-vIA"/>
+                        <constraint firstAttribute="trailing" secondItem="dgG-cN-txu" secondAttribute="trailing" constant="80" id="Dxy-9P-Zrc"/>
+                        <constraint firstItem="OMg-ZO-aZh" firstAttribute="top" secondItem="jX5-Hr-x3x" secondAttribute="bottom" constant="5" id="MEJ-N0-P8u"/>
+                        <constraint firstItem="dgG-cN-txu" firstAttribute="leading" secondItem="LUd-Jp-bAh" secondAttribute="leading" constant="80" id="PId-Jb-85Y"/>
+                        <constraint firstItem="OMg-ZO-aZh" firstAttribute="leading" secondItem="LUd-Jp-bAh" secondAttribute="leading" constant="10" id="Tef-Wk-gjB"/>
+                        <constraint firstAttribute="bottom" secondItem="qaT-55-afT" secondAttribute="bottom" id="Wtp-LL-3e0"/>
+                        <constraint firstItem="dgG-cN-txu" firstAttribute="top" secondItem="LUd-Jp-bAh" secondAttribute="top" id="aDj-e8-B6d"/>
+                        <constraint firstItem="0SU-om-hoG" firstAttribute="leading" secondItem="LUd-Jp-bAh" secondAttribute="leading" constant="10" id="dXL-rN-Vuw"/>
+                        <constraint firstAttribute="trailing" secondItem="OMg-ZO-aZh" secondAttribute="trailing" constant="10" id="eez-vc-NHE"/>
+                        <constraint firstItem="jX5-Hr-x3x" firstAttribute="leading" secondItem="LUd-Jp-bAh" secondAttribute="leading" constant="10" id="lN2-SH-Fec"/>
+                        <constraint firstAttribute="trailing" secondItem="jX5-Hr-x3x" secondAttribute="trailing" constant="10" id="lQF-hb-5bu"/>
+                        <constraint firstItem="jX5-Hr-x3x" firstAttribute="top" secondItem="dgG-cN-txu" secondAttribute="bottom" constant="8" id="lcU-a7-gTU"/>
+                        <constraint firstItem="qaT-55-afT" firstAttribute="top" secondItem="OMg-ZO-aZh" secondAttribute="bottom" constant="5" id="qYd-n9-mX4"/>
+                        <constraint firstItem="0SU-om-hoG" firstAttribute="top" secondItem="OMg-ZO-aZh" secondAttribute="bottom" constant="4" id="tov-C2-6pj"/>
+                        <constraint firstAttribute="trailing" secondItem="0SU-om-hoG" secondAttribute="trailing" constant="10" id="wmI-uS-9KW"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vRJ-jI-hi4"/>
+            <color key="backgroundColor" red="0.10980392160000001" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="tintColor" red="0.10980392160000001" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="LUd-Jp-bAh" firstAttribute="top" secondItem="eo1-Gr-M4S" secondAttribute="top" id="AWg-sE-NAJ"/>
+                <constraint firstItem="LUd-Jp-bAh" firstAttribute="bottom" secondItem="vRJ-jI-hi4" secondAttribute="bottom" id="aaX-3S-Ih2"/>
+                <constraint firstItem="LUd-Jp-bAh" firstAttribute="leading" secondItem="vRJ-jI-hi4" secondAttribute="leading" id="g6h-bP-W5u"/>
+                <constraint firstItem="LUd-Jp-bAh" firstAttribute="trailing" secondItem="vRJ-jI-hi4" secondAttribute="trailing" id="v9z-ab-INB"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="artistName" destination="0SU-om-hoG" id="a3U-bX-wOO"/>
+                <outlet property="imageView" destination="dgG-cN-txu" id="fyI-Hg-iim"/>
+                <outlet property="releaseDate" destination="jX5-Hr-x3x" id="Rlx-gg-0wE"/>
+                <outlet property="songName" destination="OMg-ZO-aZh" id="Bll-Ak-Sk9"/>
+            </connections>
+            <point key="canvasLocation" x="126.81159420289856" y="-7.7008928571428568"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="play.circle.fill" catalog="system" width="128" height="123"/>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

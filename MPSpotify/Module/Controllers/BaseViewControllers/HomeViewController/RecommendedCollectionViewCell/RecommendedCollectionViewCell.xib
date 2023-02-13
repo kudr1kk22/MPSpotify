@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+        <array key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecommendedCollectionViewCell" id="DlS-8n-kic" customClass="RecommendedCollectionViewCell" customModule="MPSpotify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="526" height="127"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SNt-MI-et7">
+                <rect key="frame" x="0.0" y="0.0" width="526" height="127"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Srh-tL-aTj">
+                        <rect key="frame" x="0.0" y="0.0" width="127" height="127"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Srh-tL-aTj" secondAttribute="height" multiplier="1:1" id="6Yu-Di-PK2"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="AAc-VN-HEp"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="songname" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIU-qL-VmP">
+                        <rect key="frame" x="143" y="37" width="383" height="19.666666666666671"/>
+                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7nl-kF-Ora">
+                        <rect key="frame" x="143" y="5" width="46.333333333333343" height="24"/>
+                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="Srh-tL-aTj" firstAttribute="leading" secondItem="SNt-MI-et7" secondAttribute="leading" id="8Ke-VC-9cI"/>
+                    <constraint firstItem="hIU-qL-VmP" firstAttribute="top" secondItem="7nl-kF-Ora" secondAttribute="bottom" constant="8" id="JlJ-0z-ab9"/>
+                    <constraint firstItem="Srh-tL-aTj" firstAttribute="top" secondItem="SNt-MI-et7" secondAttribute="top" id="MaU-mD-Irm"/>
+                    <constraint firstAttribute="bottom" secondItem="Srh-tL-aTj" secondAttribute="bottom" id="MqF-YC-b9Y"/>
+                    <constraint firstItem="hIU-qL-VmP" firstAttribute="leading" secondItem="Srh-tL-aTj" secondAttribute="trailing" constant="16" id="Zqj-8X-aGQ"/>
+                    <constraint firstItem="Srh-tL-aTj" firstAttribute="centerY" secondItem="SNt-MI-et7" secondAttribute="centerY" id="dnj-yr-cRR"/>
+                    <constraint firstItem="7nl-kF-Ora" firstAttribute="leading" secondItem="Srh-tL-aTj" secondAttribute="trailing" constant="16" id="hMd-4N-ZxZ"/>
+                    <constraint firstItem="7nl-kF-Ora" firstAttribute="top" secondItem="SNt-MI-et7" secondAttribute="top" constant="5" id="pJh-fT-ZMG"/>
+                    <constraint firstAttribute="trailing" secondItem="hIU-qL-VmP" secondAttribute="trailing" id="z4D-gK-Jl1"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="526" height="127"/>
+            <connections>
+                <outlet property="artistName" destination="7nl-kF-Ora" id="9fw-jN-q3l"/>
+                <outlet property="imageView" destination="Srh-tL-aTj" id="dDp-RW-JVU"/>
+                <outlet property="songName" destination="hIU-qL-VmP" id="Pgu-Tw-uiL"/>
+            </connections>
+            <point key="canvasLocation" x="148.09160305343511" y="-90.492957746478879"/>
+        </collectionViewCell>
+    </objects>
+</document>
