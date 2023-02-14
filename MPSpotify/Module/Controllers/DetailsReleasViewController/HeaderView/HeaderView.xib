@@ -85,7 +85,7 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vRJ-jI-hi4"/>
-            <color key="backgroundColor" red="0.10980392160000001" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <color key="tintColor" red="0.10980392160000001" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="LUd-Jp-bAh" firstAttribute="top" secondItem="eo1-Gr-M4S" secondAttribute="top" id="AWg-sE-NAJ"/>

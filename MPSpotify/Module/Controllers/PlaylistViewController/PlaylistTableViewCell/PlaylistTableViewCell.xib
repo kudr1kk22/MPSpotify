@@ -35,7 +35,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="artistLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHg-Ia-fPL">
-                        <rect key="frame" x="114" y="70" width="170" height="20"/>
+                        <rect key="frame" x="114" y="70" width="170" height="19.666666666666671"/>
                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                         <color key="textColor" systemColor="systemGray2Color"/>
                         <nil key="highlightedColor"/>
@@ -53,7 +53,7 @@
                     <constraint firstItem="dHg-Ia-fPL" firstAttribute="trailing" secondItem="gXk-EK-efh" secondAttribute="trailingMargin" id="xyG-cc-nfQ"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.10980392160000001" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="artistImage" destination="AvT-j7-07B" id="ENy-Dy-loI"/>
                 <outlet property="artistNameLabel" destination="dHg-Ia-fPL" id="PLq-Rd-Rnd"/>

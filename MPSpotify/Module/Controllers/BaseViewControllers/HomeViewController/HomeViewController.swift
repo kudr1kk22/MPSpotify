@@ -48,11 +48,11 @@ final class HomeViewController: UIViewController {
 
   func playTracks(_ position: Int) {
     guard let tracks = homeVCViewModel.recommendationsModel?.tracks else { return }
-    let viewModel = PlayerViewModel(track: tracks)
+    let viewModel = PlayerViewModel(audioControl: CommandCenterAudioControl(track: tracks))
     let playerVC = PlayerViewController(viewModel: viewModel)
-    viewModel.startPlaybacks(from: playerVC, track: tracks, position: position)
+    viewModel.audioControl.startPlaybacks(from: playerVC, track: tracks, position: position)
     present(playerVC, animated: true)
-    viewModel.playerQueue?.play()
+    viewModel.audioControl.playerQueue?.play()
   }
 
 

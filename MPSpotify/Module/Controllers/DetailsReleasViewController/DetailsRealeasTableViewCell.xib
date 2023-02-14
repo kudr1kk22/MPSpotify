@@ -44,7 +44,7 @@
                     <constraint firstAttribute="trailing" secondItem="2AH-Kw-NbQ" secondAttribute="trailing" id="g3W-HJ-Hmn"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.10980392160000001" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="artistLabel" destination="Dmb-IE-qvc" id="D6h-H1-WGD"/>
                 <outlet property="songnameLabel" destination="2AH-Kw-NbQ" id="FM4-OT-mYx"/>

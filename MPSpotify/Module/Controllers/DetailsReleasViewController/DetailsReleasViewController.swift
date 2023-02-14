@@ -63,11 +63,11 @@ final class DetailsReleasViewController: UIViewController {
       track.album = self.detailsReleasVCViewModel.album
       return track
     })
-    let viewModel = PlayerViewModel(track: tracksWithAlbum)
+    let viewModel = PlayerViewModel(audioControl: CommandCenterAudioControl(track: tracksWithAlbum) )
     let playerVC = PlayerViewController(viewModel: viewModel)
-    viewModel.startPlaybacks(from: playerVC, track: tracksWithAlbum, position: position)
+    viewModel.audioControl.startPlaybacks(from: playerVC, track: tracksWithAlbum, position: position)
     present(playerVC, animated: true)
-    viewModel.playerQueue?.play()
+    viewModel.audioControl.playerQueue?.play()
   }
 
 }

@@ -21,12 +21,12 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="BuX-Pl-Wjs">
                     <rect key="frame" x="0.0" y="48" width="414" height="848"/>
-                    <color key="backgroundColor" red="0.10980392160000001" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="sectionIndexBackgroundColor" red="0.10980392160000001" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" red="0.10980392160000001" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="BuX-Pl-Wjs" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="7wQ-Un-DzQ"/>
                 <constraint firstAttribute="bottom" secondItem="BuX-Pl-Wjs" secondAttribute="bottom" id="Gpq-ht-6Yl"/>

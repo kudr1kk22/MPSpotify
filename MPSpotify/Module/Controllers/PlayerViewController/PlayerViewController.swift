@@ -18,6 +18,7 @@ final class PlayerViewController: UIViewController {
   @IBOutlet private weak var songNameLabel: UILabel!
   @IBOutlet private weak var artistNameLabel: UILabel!
   @IBOutlet private weak var imageView: UIImageView!
+  @IBOutlet private weak var playPauseButton: UIButton!
 
   //MARK: - IBActions
 
@@ -27,23 +28,21 @@ final class PlayerViewController: UIViewController {
 
   @IBAction private func backwardButtonDidTap() {
     viewModel.didTapBackwardButton()
-    setupLabels()
     timeObserve()
   }
 
   @IBAction private func forwardButtonDidTap() {
     viewModel.didTapNextButton()
-    setupLabels()
     timeObserve()
   }
 
   @IBAction private func didBeginDraggingSlider(_ sender: UISlider) {
-    viewModel.pause()
+    viewModel.audioControl.pause(playPauseButton)
 
   }
 
   @IBAction private func didEndDraggingSlider(_ sender: UISlider) {
-        viewModel.playOnNewPosition(sender)
+    viewModel.audioControl.playOnNewPosition(sender, playPauseButton)
   }
 
 
@@ -75,28 +74,37 @@ final class PlayerViewController: UIViewController {
     timeObserve()
     setupLabels()
     viewModel.observePlayer()
+    viewModel.audioControl.setupRemoteTransportControls(playPauseButton)
+    setBackgroundControls()
   }
+
+
 
 
   //MARK: - Observers
 
   private func timeObserve() {
-    viewModel.observePlayerCurrentTime(currentTimeLabel: currentTimeLabel, remainingTimeLabel: remainingTimeLabel, currentTimeSlider: currentTimeSlider)
+    viewModel.audioControl.observePlayerCurrentTime(currentTimeLabel: currentTimeLabel, remainingTimeLabel: remainingTimeLabel, currentTimeSlider: currentTimeSlider)
 
   }
 
   //MARK: - Setup Labels from ViewModel
 
   private func setupLabels() {
-    songNameLabel.text = viewModel.track[viewModel.position].name
-    artistNameLabel.text = viewModel.track[viewModel.position].artists.first?.name
-    if let imageURL = URL(string: viewModel.track[viewModel.position].album?.images.first?.url ?? "") {
+    songNameLabel.text = viewModel.audioControl.track[viewModel.audioControl.position].name
+    artistNameLabel.text = viewModel.audioControl.track[viewModel.audioControl.position].artists.first?.name
+    if let imageURL = URL(string: viewModel.audioControl.track[viewModel.audioControl.position].album?.images.first?.url ?? "") {
       DispatchQueue.main.async {
         if let imageData = try? Data(contentsOf: imageURL) {
           self.imageView.image = UIImage(data: imageData)
         }
       }
     }
+  }
+
+  private func setBackgroundControls() {
+    let trackName = "\(viewModel.audioControl.track[viewModel.audioControl.position].artists.first?.name ?? "") - \(viewModel.audioControl.track[viewModel.audioControl.position].name)"
+    viewModel.audioControl.setupNowPlaying(title: trackName)
   }
 
   //MARK: - Gradient Layer
@@ -111,6 +119,8 @@ final class PlayerViewController: UIViewController {
 extension PlayerViewController: PlayerObserverDelegate {
   func updateUI() {
     setupLabels()
+    setBackgroundControls()
   }
 }
+
 

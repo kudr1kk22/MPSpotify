@@ -21,7 +21,7 @@
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="S8u-wC-zy6">
                     <rect key="frame" x="0.0" y="48" width="414" height="848"/>
-                    <color key="backgroundColor" red="0.10980392160000001" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="epz-BJ-VR1">
                         <size key="itemSize" width="200" height="200"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -31,7 +31,7 @@
                 </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" red="0.10980392160000001" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="S8u-wC-zy6" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="BzT-yB-IWX"/>
                 <constraint firstAttribute="bottom" secondItem="S8u-wC-zy6" secondAttribute="bottom" id="Ect-6v-zfC"/>
