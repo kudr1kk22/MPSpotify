@@ -21,13 +21,7 @@ final class PlaylistTableViewCell: UITableViewCell {
     songNameLabel.text = viewModel.name
     artistNameLabel.text = viewModel.artistName
     if let imageURL = URL(string: viewModel.imageURL?.absoluteString ?? "") {
-      DispatchQueue.global().async {
-        if let imageData = try? Data(contentsOf: imageURL) {
-          DispatchQueue.main.async {
-            self.artistImage.image = UIImage(data: imageData)
-          }
-        }
-      }
+      artistImage.sd_setImage(with: imageURL)
     }
   }
 }

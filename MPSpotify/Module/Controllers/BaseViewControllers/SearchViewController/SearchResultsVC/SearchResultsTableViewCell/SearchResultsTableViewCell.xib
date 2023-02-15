@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SearchResultsTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchResultsTableViewCell" rowHeight="105" id="BeX-zw-oSL" customClass="SearchResultsTableViewCell" customModule="MPSpotify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="468" height="105"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BeX-zw-oSL" id="XDJ-ku-ssN">
+                <rect key="frame" x="0.0" y="0.0" width="468" height="105"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAg-l8-XXH">
+                        <rect key="frame" x="113" y="18" width="335" height="24"/>
+                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qua-6H-POM">
+                        <rect key="frame" x="113" y="56" width="335" height="24"/>
+                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nxJ-yN-i29">
+                        <rect key="frame" x="0.0" y="0.0" width="105" height="105"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="nxJ-yN-i29" secondAttribute="height" multiplier="1:1" id="FsX-23-cUn"/>
+                            <constraint firstAttribute="height" constant="105" id="VzZ-dJ-PU2"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="rAg-l8-XXH" firstAttribute="top" secondItem="XDJ-ku-ssN" secondAttribute="top" constant="18" id="0mn-W8-qO2"/>
+                    <constraint firstAttribute="bottom" secondItem="nxJ-yN-i29" secondAttribute="bottom" id="1en-ts-qhd"/>
+                    <constraint firstItem="nxJ-yN-i29" firstAttribute="leading" secondItem="XDJ-ku-ssN" secondAttribute="leading" id="BFi-HU-PUY"/>
+                    <constraint firstItem="Qua-6H-POM" firstAttribute="top" secondItem="rAg-l8-XXH" secondAttribute="bottom" constant="14" id="RMj-9k-Gxe"/>
+                    <constraint firstItem="rAg-l8-XXH" firstAttribute="leading" secondItem="nxJ-yN-i29" secondAttribute="trailing" constant="8" id="grg-b4-yb8"/>
+                    <constraint firstAttribute="trailing" secondItem="Qua-6H-POM" secondAttribute="trailing" constant="20" symbolic="YES" id="jCA-Li-FK9"/>
+                    <constraint firstItem="Qua-6H-POM" firstAttribute="leading" secondItem="nxJ-yN-i29" secondAttribute="trailing" constant="8" id="reK-Iy-FQQ"/>
+                    <constraint firstItem="nxJ-yN-i29" firstAttribute="top" secondItem="XDJ-ku-ssN" secondAttribute="top" id="v4C-Wr-4ce"/>
+                    <constraint firstAttribute="trailing" secondItem="rAg-l8-XXH" secondAttribute="trailing" constant="20" symbolic="YES" id="zT5-VJ-js1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="artistImage" destination="nxJ-yN-i29" id="Pyg-H6-bCn"/>
+                <outlet property="songLabel" destination="rAg-l8-XXH" id="eaA-ps-ryh"/>
+                <outlet property="subtitleLabel" destination="Qua-6H-POM" id="HFk-fg-eH6"/>
+            </connections>
+            <point key="canvasLocation" x="346.56488549618319" y="-27.112676056338028"/>
+        </tableViewCell>
+    </objects>
+</document>

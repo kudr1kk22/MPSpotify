@@ -17,13 +17,7 @@ final class RecommendedCollectionViewCell: UICollectionViewCell {
     songName.text = viewModel.name
     artistName.text = viewModel.artistName
     if let imageURL = viewModel.imageURL {
-      DispatchQueue.global().async {
-        if let imageData = try? Data(contentsOf: imageURL) {
-          DispatchQueue.main.async {
-            self.imageView.image = UIImage(data: imageData)
-          }
-        }
-      }
+      imageView.sd_setImage(with: imageURL)
     }
   }
 

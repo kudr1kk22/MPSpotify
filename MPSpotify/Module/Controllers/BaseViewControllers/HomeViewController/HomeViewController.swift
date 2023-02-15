@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class HomeViewController: UIViewController {
 
@@ -49,11 +50,11 @@ final class HomeViewController: UIViewController {
   func playTracks(_ position: Int) {
     guard let tracks = homeVCViewModel.recommendationsModel?.tracks else { return }
     let filter = tracks.filter { $0.previewURL != nil }
-    let viewModel = PlayerViewModel(track: filter)
+    let viewModel = PlayerViewModel(audioControl: CommandCenterAudioControl(track: tracks))
     let playerVC = PlayerViewController(viewModel: viewModel)
-    viewModel.startPlaybacks(from: playerVC, track: filter, position: position)
+    viewModel.audioControl.startPlaybacks(from: playerVC, track: filter, position: position)
     present(playerVC, animated: true)
-    viewModel.playerQueue?.play()
+    viewModel.audioControl.playerQueue?.play()
   }
 
 
@@ -94,16 +95,10 @@ final class HomeViewController: UIViewController {
 
   func configureCompositionalLayout(){
       let layout = UICollectionViewCompositionalLayout { sectionIndex, enviroment in
-        return HomeViewController.createSectionLayout(section: sectionIndex)
+        return self.createSectionLayout(section: sectionIndex)
       }
-
       collectionView.setCollectionViewLayout(layout, animated: true)
   }
-
-
-
-
-
   }
 
 
@@ -195,7 +190,7 @@ final class HomeViewController: UIViewController {
 
 extension HomeViewController {
 
-  static func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
+   private func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
     let supplementaryViews = [
       NSCollectionLayoutBoundarySupplementaryItem(
         layoutSize: NSCollectionLayoutSize(

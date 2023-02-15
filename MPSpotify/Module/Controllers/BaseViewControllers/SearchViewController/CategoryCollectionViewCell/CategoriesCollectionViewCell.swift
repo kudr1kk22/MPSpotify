@@ -17,13 +17,7 @@ final class CategoriesCollectionViewCell: UICollectionViewCell {
   func configure(with viewModel: CategoriesCellViewModel) {
     categoryName.text = viewModel.title
     if let imageURL = viewModel.imageURL {
-      DispatchQueue.global().async {
-        if let imageData = try? Data(contentsOf: imageURL) {
-          DispatchQueue.main.async {
-            self.categoryImageView.image = UIImage(data: imageData)
-          }
-        }
-      }
+      categoryImageView.sd_setImage(with: imageURL)
     }
   }
 

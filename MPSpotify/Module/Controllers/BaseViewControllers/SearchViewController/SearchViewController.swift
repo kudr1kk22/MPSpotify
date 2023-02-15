@@ -14,9 +14,6 @@ final class SearchViewController: UIViewController {
 
   @IBOutlet private weak var collectionView: UICollectionView!
 
-  //MARK: - Properties
-
-  private var searchViewModel: SearchViewModelProtocol
 
   //MARK: - Initialization
 
@@ -29,14 +26,26 @@ final class SearchViewController: UIViewController {
     fatalError("init(coder:) has not been implemented")
   }
 
+  //MARK: - Properties
+
+  private var searchViewModel: SearchViewModelProtocol
+
+  private let searchController: UISearchController = {
+      let vc = UISearchController(searchResultsController: SearchResultsViewController())
+      return vc
+  }()
+
   //MARK: - Life Cycle
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupSearchController()
     bind()
     registerCells()
     self.collectionView.reloadData()
   }
+
+  //MARK: - Binding
 
   private func bind() {
     searchViewModel.complitionHandler = {
@@ -44,7 +53,18 @@ final class SearchViewController: UIViewController {
       }
   }
 
+//MARK: - Setup search controller
 
+  func setupSearchController() {
+
+    searchController.searchBar.placeholder = "Songs, Artists, Albums"
+    searchController.searchBar.searchBarStyle = .minimal
+    searchController.searchBar.barStyle = .black
+    searchController.definesPresentationContext = true
+    navigationItem.searchController = searchController
+    searchController.searchResultsUpdater = self
+    
+  }
 
   //MARK: - Create CollectionViewCell
 
@@ -88,6 +108,8 @@ extension SearchViewController: UICollectionViewDataSource {
 
 }
 
+//MARK: - UICollectionViewDelegate
+
 extension SearchViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
       collectionView.deselectItem(at: indexPath, animated: true)
@@ -100,3 +122,44 @@ extension SearchViewController: UICollectionViewDelegate {
     }
   }
 
+//MARK: - UISearchResultsUpdating
+
+extension SearchViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    guard let text = searchController.searchBar.text else { return }
+
+      searchViewModel.search(from: text)
+      guard let resultsController = searchController.searchResultsController as? SearchResultsViewController,
+            let query = searchController.searchBar.text,
+            !query.trimmingCharacters(in: .whitespaces).isEmpty else {
+          return
+      }
+      resultsController.delegate = self
+      resultsController.update(with: searchViewModel.searchResults)
+
+    }
+
+  }
+
+
+extension SearchViewController: SearchResultsViewControllerDelegate {
+    func didTapResult(_ result: SearchResult) {
+      let apiCaller = APICaller(authManager: AuthManager())
+        switch result {
+        case .album(let model):
+            let vc = DetailsReleasViewController(detailsReleasVCViewModel: DetailsReleasViewModel(album: model, apiCaller: apiCaller))
+            vc.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(vc, animated: true)
+        case .track(let model):
+          let viewModel = PlayerViewModel(audioControl: CommandCenterAudioControl(track: [model]))
+          let playerVC = PlayerViewController(viewModel: viewModel)
+          viewModel.audioControl.startPlaybacks(from: playerVC, track: [model], position: 0)
+          present(playerVC, animated: true)
+          viewModel.audioControl.playerQueue?.play()
+        case .playlist(let model):
+            let vc = PlaylistViewController(playlistViewModel: PlaylistViewModel(playlist: model, apiCaller: apiCaller))
+            vc.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+}

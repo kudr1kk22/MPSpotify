@@ -37,11 +37,7 @@ final class HeaderView: UITableViewHeaderFooterView {
       releaseDate.text = "Release date: \(date)"
     }
     if let imageURL = URL(string: viewModel.image?.absoluteString ?? "") {
-      if let imageData = try? Data(contentsOf: imageURL) {
-        DispatchQueue.main.async {
-          self.imageView.image = UIImage(data: imageData)
-        }
-      }
+      imageView.sd_setImage(with: imageURL)
     }
   }
 

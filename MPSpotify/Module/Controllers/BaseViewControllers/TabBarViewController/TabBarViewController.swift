@@ -76,6 +76,13 @@ final class TabBarViewController: UITabBarController {
     libraryVCnavigationController.navigationBar.barTintColor = navigationBarColor
     profileVCnavigationController.navigationBar.barTintColor = navigationBarColor
 
+    homeVCnavigationController.navigationBar.tintColor = .white
+    searchVCnavigationController.navigationBar.tintColor = .white
+    libraryVCnavigationController.navigationBar.tintColor = .white
+    profileVCnavigationController.navigationBar.tintColor = .white
+
+    tabBar.tintColor = .systemGreen
+    tabBar.barTintColor = .black
 
 
     setViewControllers([homeVCnavigationController, searchVCnavigationController, libraryVCnavigationController, profileVCnavigationController], animated: false)

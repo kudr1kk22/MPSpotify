@@ -94,11 +94,7 @@ final class PlayerViewController: UIViewController {
     songNameLabel.text = viewModel.audioControl.track[viewModel.audioControl.position].name
     artistNameLabel.text = viewModel.audioControl.track[viewModel.audioControl.position].artists.first?.name
     if let imageURL = URL(string: viewModel.audioControl.track[viewModel.audioControl.position].album?.images.first?.url ?? "") {
-      DispatchQueue.main.async {
-        if let imageData = try? Data(contentsOf: imageURL) {
-          self.imageView.image = UIImage(data: imageData)
-        }
-      }
+      imageView.sd_setImage(with: imageURL)
     }
   }
 

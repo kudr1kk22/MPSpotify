@@ -21,13 +21,7 @@ final class NewReleaseCollectionViewCell: UICollectionViewCell {
     songnameLabel.text = viewModel.trackName
     artistLabel.text = viewModel.artistName
     if let imageURL = viewModel.artistURL {
-      DispatchQueue.global().async {
-        if let imageData = try? Data(contentsOf: imageURL) {
-          DispatchQueue.main.async {
-            self.albumImage.image = UIImage(data: imageData)
-          }
-        }
-      }
+      albumImage.sd_setImage(with: imageURL)
     }
   }
 }

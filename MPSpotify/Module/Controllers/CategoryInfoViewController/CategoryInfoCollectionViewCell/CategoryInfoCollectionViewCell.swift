@@ -27,13 +27,7 @@ final class CategoryInfoCollectionViewCell: UICollectionViewCell {
     creatorName.text = viewModel.creatorName
     name.text = viewModel.name
     if let imageURL = URL(string: viewModel.imageURL?.absoluteString ?? "") {
-      DispatchQueue.global().async {
-        if let imageData = try? Data(contentsOf: imageURL) {
-          DispatchQueue.main.async {
-            self.imageView.image = UIImage(data: imageData)
-          }
-        }
-      }
+      imageView.sd_setImage(with: imageURL)
     }
 
   }

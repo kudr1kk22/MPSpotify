@@ -9,7 +9,7 @@ import Foundation
 
 protocol APICallerProtocol {
   func getCurrentUserProfile(completion: @escaping (Result<UserProfile, Error>) -> Void)
-//  func getFeaturedPlaylists(completion: @escaping (Result<FeaturedPlaylists, Error>) -> Void)
+  func search(with query: String, completion: @escaping (Result<[SearchResult], Error>) -> Void)
   func getNewReleases(completion: @escaping (Result<NewReleases, Error>) -> Void)
   func getCategories(completion: @escaping (Result<[Category], Error>) -> Void)
   func getAlbumDetails(for album: AlbumModel, completion: @escaping (Result<AlbumDetails, Error>) -> Void)
@@ -54,26 +54,6 @@ final class APICaller: APICallerProtocol {
       }
     }
   }
-
-//MARK: - Get User Playlists
-
-//  func getFeaturedPlaylists(completion: @escaping (Result<FeaturedPlaylists, Error>) -> Void) {
-//    authManager.withValidToken { token in
-//      self.createRequest(with: URL(string: Constants.baseAPIURL + "/browse/featured-playlists"), type: .GET) { request in
-//        let task = URLSession.shared.dataTask(with: request) { data, _, error in
-//          guard let data = data, error == nil else { return }
-//          do {
-//            let result = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-//
-//          }
-//          catch {
-//            completion(.failure(error))
-//          }
-//        }
-//        task.resume()
-//      }
-//    }
-//  }
 
 //MARK: - Get Several Browse Categories
 
@@ -206,7 +186,7 @@ final class APICaller: APICallerProtocol {
       }
   }
 
-  //MARK: - get Recommendations
+  //MARK: - Get Recommendations
 
    func getRecommendations(genres: Set<String>, completion: @escaping ((Result<RecommendationsResponse, Error>) -> Void)) {
       let seeds = genres.joined(separator: ",")
@@ -219,6 +199,33 @@ final class APICaller: APICallerProtocol {
               do {
                   let result = try JSONDecoder().decode(RecommendationsResponse.self, from: data)
                   completion(.success(result))
+              }
+              catch {
+                  completion(.failure(error))
+              }
+          }
+          task.resume()
+      }
+  }
+
+  // MARK: - Search
+
+   func search(with query: String, completion: @escaping (Result<[SearchResult], Error>) -> Void) {
+      createRequest(
+          with: URL(string: Constants.baseAPIURL+"/search?limit=10&type=album,artist,playlist,track&q=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"),
+          type: .GET
+      ) { request in
+          let task = URLSession.shared.dataTask(with: request) { data, _, error in
+              guard let data = data, error == nil else { return }
+              do {
+                  let result = try JSONDecoder().decode(SearchResultsResponse.self, from: data)
+
+                  var searchResults: [SearchResult] = []
+                  searchResults.append(contentsOf: result.tracks.items.compactMap({ .track(model: $0) }))
+                  searchResults.append(contentsOf: result.albums.items.compactMap({ .album(model: $0) }))
+                  searchResults.append(contentsOf: result.playlists.items.compactMap({ .playlist(model: $0) }))
+
+                  completion(.success(searchResults))
               }
               catch {
                   completion(.failure(error))

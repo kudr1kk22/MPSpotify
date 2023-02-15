@@ -118,11 +118,7 @@ private func updateUI(with model: UserProfile) {
   }
 
   if let imageURL = URL(string: model.images.first?.url ?? "") {
-    if let imageData = try? Data(contentsOf: imageURL) {
-      DispatchQueue.main.async {
-        self.profileImage.image = UIImage(data: imageData)
-      }
-    }
+    profileImage.sd_setImage(with: imageURL)
   }
 }
 }

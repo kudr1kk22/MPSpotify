@@ -38,11 +38,7 @@ final class PlaylistVCHeaderView: UITableViewHeaderFooterView {
     ownerLabel.text = viewModel.ownerName
 
     if let imageURL = URL(string: viewModel.imageURL?.absoluteString ?? "") {
-      if let imageData = try? Data(contentsOf: imageURL) {
-        DispatchQueue.main.async {
-          self.imageView.image = UIImage(data: imageData)
-        }
-      }
+      imageView.sd_setImage(with: imageURL)
     }
   }
 }
