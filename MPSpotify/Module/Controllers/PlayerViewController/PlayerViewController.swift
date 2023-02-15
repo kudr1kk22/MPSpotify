@@ -49,7 +49,6 @@ final class PlayerViewController: UIViewController {
   //MARK: - Properties
 
   private var viewModel: PlayerViewModelProtocol
-  private var isPlayerPlaying: Bool = true
 
   //MARK: - Initialization
 
@@ -125,22 +124,7 @@ final class PlayerViewController: UIViewController {
     imageView.transform = CGAffineTransform(scaleX: scale, y: scale)
     imageView.layer.cornerRadius = 10
   }
-
-  private func imageAnimate(_ success: Bool) {
-    let scale: CGFloat = 0.9
-    if success {
-      isPlayerPlaying = false
-     
-    } else {
-      isPlayerPlaying = true
-     
-    }
-  }
-
-
 }
-
-
 
 //MARK: - PlayerObserverDelegate
 
