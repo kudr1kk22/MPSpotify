@@ -23,14 +23,14 @@ protocol CommandCenterAudioControlProtocol {
     track: [AudioTrack], position: Int)
 
   func play(at index: Int)
-  func pause(_ playButton: UIButton)
-  func play(_ playButton: UIButton)
-  func playOnNewPosition(_ slider: UISlider,_ playButton: UIButton)
+  func pause(_ playButton: UIButton,_ imageView: UIImageView)
+  func play(_ playButton: UIButton,_ imageView: UIImageView)
+  func playOnNewPosition(_ slider: UISlider,_ playButton: UIButton,_ imageView: UIImageView)
 
   func observePlayerCurrentTime(currentTimeLabel: UILabel, remainingTimeLabel: UILabel, currentTimeSlider: UISlider)
 
-  func setupRemoteTransportControls(_ playButton: UIButton)
-  func setupNowPlaying(title: String)
+  func setupRemoteTransportControls(_ playButton: UIButton,_ imageView: UIImageView)
+  func setupNowPlaying(title: String, imageURL: URL)
 
   func updateNowPlaying(isPause: Bool)
 }
@@ -42,6 +42,8 @@ final class CommandCenterAudioControl: CommandCenterAudioControlProtocol {
   var track: [AudioTrack]
 
   weak var buttonControls: ButtonControlsDelegate?
+
+  let playerDispatchQueue = DispatchQueue(label: "player", qos: .userInitiated)
 
   var playerTracks: [AVPlayerItem] {
     track.compactMap({
@@ -68,24 +70,43 @@ final class CommandCenterAudioControl: CommandCenterAudioControlProtocol {
   //MARK: - Play
 
   func play(at index: Int) {
-    playerQueue?.actionAtItemEnd = .none
-    playerQueue?.replaceCurrentItem(with: playerTracks[index])
-    playerQueue?.play()
+    playerDispatchQueue.async {
+      self.playerQueue?.actionAtItemEnd = .none
+      self.playerQueue?.replaceCurrentItem(with: self.playerTracks[index])
+      self.playerQueue?.play()
+    }
   }
 
-  func pause(_ playButton: UIButton) {
-    playerQueue?.pause()
-    updateNowPlaying(isPause: true)
-    playButton.setBackgroundImage(UIImage(systemName: "play.circle"), for: .normal)
+  func pause(_ playButton: UIButton,_ imageView: UIImageView) {
+    let scale: CGFloat = 0.9
+    playerDispatchQueue.async {
+      self.playerQueue?.pause()
+      self.updateNowPlaying(isPause: true)
+      DispatchQueue.main.async {
+        playButton.setBackgroundImage(UIImage(systemName: "play.circle"), for: .normal)
+        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1.0) {
+          imageView.transform = CGAffineTransform(scaleX: scale - 0.2, y: scale - 0.2)
+        }
+      }
+    }
   }
 
-  func play(_ playButton: UIButton) {
-    playerQueue?.play()
-    updateNowPlaying(isPause: false)
-    playButton.setBackgroundImage(UIImage(systemName: "pause.circle"), for: .normal)
+
+  func play(_ playButton: UIButton,_ imageView: UIImageView) {
+    let scale: CGFloat = 0.9
+    playerDispatchQueue.async {
+      self.playerQueue?.play()
+      self.updateNowPlaying(isPause: false)
+      DispatchQueue.main.async {
+        playButton.setBackgroundImage(UIImage(systemName: "pause.circle"), for: .normal)
+        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1.0) {
+          imageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        }
+      }
+    }
   }
 
-  func playOnNewPosition(_ slider: UISlider,_ playButton: UIButton) {
+  func playOnNewPosition(_ slider: UISlider,_ playButton: UIButton,_ imageView: UIImageView) {
     let seconds = Double(slider.value)
     guard let timeScale = playerQueue?.currentTime().timescale else { return }
 
@@ -93,9 +114,11 @@ final class CommandCenterAudioControl: CommandCenterAudioControlProtocol {
     let durationDoubleTimeScale = Double(playerQueue?.currentItem?.duration.timescale ?? CMTimeScale(0.0))
 
     let seekTime = CMTimeMakeWithSeconds(seconds * durationDoubleValue / durationDoubleTimeScale, preferredTimescale: timeScale)
-    playerQueue?.seek(to: seekTime)
-    play(playButton)
-    updateNowPlaying(isPause:false)
+    playerDispatchQueue.async {
+      self.playerQueue?.seek(to: seekTime)
+      self.play(playButton, imageView)
+      self.updateNowPlaying(isPause:false)
+    }
   }
 
   //MARK: - Time Setup
@@ -123,7 +146,7 @@ final class CommandCenterAudioControl: CommandCenterAudioControlProtocol {
 
 //MARK: - BackGroundControls
 
-    func setupRemoteTransportControls(_ playButton: UIButton) {
+  func setupRemoteTransportControls(_ playButton: UIButton,_ imageView: UIImageView) {
     // Get the shared MPRemoteCommandCenter
     let commandCenter = MPRemoteCommandCenter.shared()
 
@@ -132,7 +155,7 @@ final class CommandCenterAudioControl: CommandCenterAudioControlProtocol {
     // Add handler for Play Command
     commandCenter.playCommand.addTarget { [weak self] event in
       if self?.playerQueue?.timeControlStatus == .paused {
-        self?.play(playButton)
+        self?.play(playButton, imageView)
              return .success
          }
          return .commandFailed
@@ -141,7 +164,7 @@ final class CommandCenterAudioControl: CommandCenterAudioControlProtocol {
     // Add handler for Pause Command
     commandCenter.pauseCommand.addTarget { [weak self] event in
       if self?.playerQueue?.timeControlStatus == .playing {
-        self?.pause(playButton)
+        self?.pause(playButton, imageView)
             return .success
         }
       return .deviceNotFound
@@ -158,47 +181,41 @@ final class CommandCenterAudioControl: CommandCenterAudioControlProtocol {
 
       commandCenter.changePlaybackPositionCommand.addTarget { [weak self] event in
              let seconds = (event as? MPChangePlaybackPositionCommandEvent)?.positionTime ?? 0
-
              let time = CMTime(seconds: seconds, preferredTimescale: 1000)
               print(event)
-
         self?.playerQueue?.seek(to: time)
              return .success
          }
   }
 
-  func setupNowPlaying(title: String) {
+  func setupNowPlaying(title: String, imageURL: URL) {
         // Define Now Playing Info
         var nowPlayingInfo = [String : Any]()
         nowPlayingInfo[MPMediaItemPropertyTitle] = title
-
-        if let image = UIImage(named: "image") {
-            nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
-                return image
-            }
-        }
-
+    playerDispatchQueue.async {
+    guard let data = try? Data(contentsOf: imageURL) else { return }
+      if let image = UIImage(data: data) {
+          nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
+              return image
+          }
+      }
+    }
       nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.playerQueue?.currentTime().seconds
       nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = playerTracks[position].asset.duration.seconds
-
       nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.playerQueue?.rate
-
-
-        // Set the metadata
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
 
   func updateNowPlaying(isPause: Bool) {
-        // Define Now Playing Info
-        var nowPlayingInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo!
-
+    playerDispatchQueue.async {
+      var nowPlayingInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo!
       nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = isPause ? 0 : 1
       nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.playerQueue?.currentTime().seconds
-    nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = playerTracks[position].asset.duration.seconds
-
-
-        // Set the metadata
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+      nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = self.playerTracks[self.position].asset.duration.seconds
+      MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
+
+
+  }
 
 }

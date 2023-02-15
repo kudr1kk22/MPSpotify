@@ -23,7 +23,7 @@ final class PlayerViewController: UIViewController {
   //MARK: - IBActions
 
   @IBAction private func playPauseButtonDidTap(_ sender: UIButton) {
-    viewModel.didTapPlayButton(sender)
+    viewModel.didTapPlayButton(sender, imageView)
   }
 
   @IBAction private func backwardButtonDidTap() {
@@ -37,18 +37,19 @@ final class PlayerViewController: UIViewController {
   }
 
   @IBAction private func didBeginDraggingSlider(_ sender: UISlider) {
-    viewModel.audioControl.pause(playPauseButton)
+    viewModel.audioControl.pause(playPauseButton, imageView)
 
   }
 
   @IBAction private func didEndDraggingSlider(_ sender: UISlider) {
-    viewModel.audioControl.playOnNewPosition(sender, playPauseButton)
+    viewModel.audioControl.playOnNewPosition(sender, playPauseButton, imageView)
   }
 
 
   //MARK: - Properties
 
   private var viewModel: PlayerViewModelProtocol
+  private var isPlayerPlaying: Bool = true
 
   //MARK: - Initialization
 
@@ -74,8 +75,9 @@ final class PlayerViewController: UIViewController {
     timeObserve()
     setupLabels()
     viewModel.observePlayer()
-    viewModel.audioControl.setupRemoteTransportControls(playPauseButton)
+    viewModel.audioControl.setupRemoteTransportControls(playPauseButton, imageView)
     setBackgroundControls()
+    imageScale()
   }
 
 
@@ -98,20 +100,50 @@ final class PlayerViewController: UIViewController {
     }
   }
 
+  //MARK: - BackGroundControls
+
   private func setBackgroundControls() {
     let trackName = "\(viewModel.audioControl.track[viewModel.audioControl.position].artists.first?.name ?? "") - \(viewModel.audioControl.track[viewModel.audioControl.position].name)"
-    viewModel.audioControl.setupNowPlaying(title: trackName)
+    if let imageURL = URL(string: viewModel.audioControl.track[viewModel.audioControl.position].album?.images.first?.url ?? "") {
+      viewModel.audioControl.setupNowPlaying(title: trackName, imageURL: imageURL)
+    }
+
   }
 
   //MARK: - Gradient Layer
-  func setGradientLayer() {
+  private func setGradientLayer() {
     let gradientLayer = CAGradientLayer()
     gradientLayer.frame = self.view.bounds
     gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
     self.view.layer.insertSublayer(gradientLayer, at: 0)
   }
 
+  //MARK: - Image Animation
+
+  private func imageScale() {
+    let scale: CGFloat = 0.9
+    imageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+    imageView.layer.cornerRadius = 10
+  }
+
+  private func imageAnimate(_ success: Bool) {
+    let scale: CGFloat = 0.9
+    if success {
+      isPlayerPlaying = false
+     
+    } else {
+      isPlayerPlaying = true
+     
+    }
+  }
+
+
 }
+
+
+
+//MARK: - PlayerObserverDelegate
+
 extension PlayerViewController: PlayerObserverDelegate {
   func updateUI() {
     setupLabels()

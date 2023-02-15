@@ -17,15 +17,6 @@ final class TabBarVCConfigurator {
     let viewController = ProfileViewController(profileViewModel: viewModel)
     return viewController
   }
-
-  static func makeLibraryViewController() -> UIViewController {
-    //      let viewModel = LibraryVCViewModel()
-    //      let viewController = LibraryViewController(libraryViewModel: viewModel)
-    //      return viewController
-    return UIViewController()
-  }
-
-  //TODO: change vm and vc
   
   static func makeSearchViewController() -> UIViewController {
           let viewModel = SearchViewModel(apiCaller: APICaller(authManager: AuthManager()))

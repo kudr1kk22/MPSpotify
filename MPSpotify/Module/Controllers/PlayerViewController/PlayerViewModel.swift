@@ -21,7 +21,7 @@ protocol PlayerViewModelProtocol {
   func observePlayer()
   func removeObserver()
 
-  func didTapPlayButton(_ playButton: UIButton)
+  func didTapPlayButton(_ playButton: UIButton,_ imageView: UIImageView)
   func didTapNextButton()
   func didTapBackwardButton()
 }
@@ -80,13 +80,12 @@ final class PlayerViewModel: PlayerViewModelProtocol {
 
     //MARK: - Play Button Action
 
-    func didTapPlayButton(_ playButton: UIButton) {
+    func didTapPlayButton(_ playButton: UIButton,_ imageView: UIImageView) {
       if let playerQueue = audioControl.playerQueue {
         if playerQueue.timeControlStatus == .playing {
-          audioControl.pause(playButton)
+          audioControl.pause(playButton, imageView)
         } else {
-          audioControl.play(playButton)
-
+          audioControl.play(playButton, imageView)
         }
       }
     }

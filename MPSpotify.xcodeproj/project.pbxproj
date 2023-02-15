@@ -38,11 +38,9 @@
 		D9582317297FFB4A00273B29 /* TabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9582316297FFB4A00273B29 /* TabBarViewController.xib */; };
 		D9582319297FFD7B00273B29 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9582318297FFD7B00273B29 /* HomeViewController.swift */; };
 		D958231B297FFD8900273B29 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958231A297FFD8900273B29 /* SearchViewController.swift */; };
-		D958231D297FFD9700273B29 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958231C297FFD9700273B29 /* LibraryViewController.swift */; };
 		D958231F297FFDBC00273B29 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958231E297FFDBC00273B29 /* ProfileViewController.swift */; };
 		D95823252980023A00273B29 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95823242980023900273B29 /* HomeViewController.xib */; };
 		D95823272980024A00273B29 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95823262980024A00273B29 /* SearchViewController.xib */; };
-		D95823292980025500273B29 /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95823282980025500273B29 /* LibraryViewController.xib */; };
 		D958232B2980026000273B29 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D958232A2980026000273B29 /* ProfileViewController.xib */; };
 		D965C3EF2992C242005F4D4A /* DetailsRealeasTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D965C3EE2992C242005F4D4A /* DetailsRealeasTableViewCell.xib */; };
 		D965C3F12992C531005F4D4A /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D965C3F02992C530005F4D4A /* HeaderView.xib */; };
@@ -113,7 +111,6 @@
 		D9F1CA39298B18FF001F0900 /* HomeVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F1CA38298B18FF001F0900 /* HomeVCViewModel.swift */; };
 		D9F67F9B2982AE8200DFD52B /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F67F9A2982AE8200DFD52B /* AuthResponse.swift */; };
 		D9F8201A298ACE79006DA8B3 /* TabBarVCConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F82019298ACE79006DA8B3 /* TabBarVCConfigurator.swift */; };
-		D9F8201C298AD46D006DA8B3 /* LibraryVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F8201B298AD46D006DA8B3 /* LibraryVCViewModel.swift */; };
 		D9FC69B3299BBC0E00C8C168 /* CommandCenterAudioControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FC69B2299BBC0E00C8C168 /* CommandCenterAudioControl.swift */; };
 /* End PBXBuildFile section */
 
@@ -166,11 +163,9 @@
 		D9582316297FFB4A00273B29 /* TabBarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabBarViewController.xib; sourceTree = "<group>"; };
 		D9582318297FFD7B00273B29 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D958231A297FFD8900273B29 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		D958231C297FFD9700273B29 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		D958231E297FFDBC00273B29 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D95823242980023900273B29 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		D95823262980024A00273B29 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SearchViewController.xib; path = SearchResultsVC/SearchViewController.xib; sourceTree = "<group>"; };
-		D95823282980025500273B29 /* LibraryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
 		D958232A2980026000273B29 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		D965C3EE2992C242005F4D4A /* DetailsRealeasTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DetailsRealeasTableViewCell.xib; path = MPSpotify/Module/Controllers/DetailsReleasViewController/DetailsRealeasTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		D965C3F02992C530005F4D4A /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
@@ -241,7 +236,6 @@
 		D9F1CA38298B18FF001F0900 /* HomeVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVCViewModel.swift; sourceTree = "<group>"; };
 		D9F67F9A2982AE8200DFD52B /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		D9F82019298ACE79006DA8B3 /* TabBarVCConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVCConfigurator.swift; sourceTree = "<group>"; };
-		D9F8201B298AD46D006DA8B3 /* LibraryVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryVCViewModel.swift; sourceTree = "<group>"; };
 		D9FC69B2299BBC0E00C8C168 /* CommandCenterAudioControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandCenterAudioControl.swift; sourceTree = "<group>"; };
 		FF3D754E802A884843B74BA5 /* Pods_MPSpotify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MPSpotify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -445,16 +439,6 @@
 			path = SearchViewController;
 			sourceTree = "<group>";
 		};
-		D9582322297FFDE500273B29 /* LibraryViewController */ = {
-			isa = PBXGroup;
-			children = (
-				D958231C297FFD9700273B29 /* LibraryViewController.swift */,
-				D95823282980025500273B29 /* LibraryViewController.xib */,
-				D9F8201B298AD46D006DA8B3 /* LibraryVCViewModel.swift */,
-			);
-			path = LibraryViewController;
-			sourceTree = "<group>";
-		};
 		D9582323297FFDEF00273B29 /* ProfileViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -603,7 +587,6 @@
 				D9582313297FFB1800273B29 /* TabBarViewController */,
 				D9582320297FFDC100273B29 /* HomeViewController */,
 				D9582321297FFDD800273B29 /* SearchViewController */,
-				D9582322297FFDE500273B29 /* LibraryViewController */,
 				D9582323297FFDEF00273B29 /* ProfileViewController */,
 			);
 			path = BaseViewControllers;
@@ -769,7 +752,6 @@
 				D91C55BC2965ECF100C99C51 /* Assets.xcassets in Resources */,
 				D9B94C3E29997F9A003A683D /* HeaderTitleViewCell.xib in Resources */,
 				D958232B2980026000273B29 /* ProfileViewController.xib in Resources */,
-				D95823292980025500273B29 /* LibraryViewController.xib in Resources */,
 				D965C3EF2992C242005F4D4A /* DetailsRealeasTableViewCell.xib in Resources */,
 				D91C560A2966437600C99C51 /* Poppins-Bold.ttf in Resources */,
 				D95823252980023A00273B29 /* HomeViewController.xib in Resources */,
@@ -861,7 +843,6 @@
 				D99001D5299CED7900AD624D /* SearchResultsViewModel.swift in Sources */,
 				D958231F297FFDBC00273B29 /* ProfileViewController.swift in Sources */,
 				D98C606729980A0B00D11040 /* CategoryInfoCollectionViewCellViewModel.swift in Sources */,
-				D9F8201C298AD46D006DA8B3 /* LibraryVCViewModel.swift in Sources */,
 				D99A0B1E299C458600F052EC /* SearchResultsResponse.swift in Sources */,
 				D9F1CA39298B18FF001F0900 /* HomeVCViewModel.swift in Sources */,
 				D958231B297FFD8900273B29 /* SearchViewController.swift in Sources */,
@@ -889,7 +870,6 @@
 				D96A6626298AB87600ED3DDE /* ProfileVCViewModel.swift in Sources */,
 				D98C60782998488200D11040 /* PlaylistTableViewCell.swift in Sources */,
 				D9F1CA35298B1784001F0900 /* ImagesResponse.swift in Sources */,
-				D958231D297FFD9700273B29 /* LibraryViewController.swift in Sources */,
 				D98C60552997DDDE00D11040 /* CategoriesCollectionViewCell.swift in Sources */,
 				D9B94C3929995D01003A683D /* RecommendedGenresResponse.swift in Sources */,
 				D9F8201A298ACE79006DA8B3 /* TabBarVCConfigurator.swift in Sources */,
